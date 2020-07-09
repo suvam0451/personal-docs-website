@@ -1,4 +1,8 @@
-div.root--light {
+@use "sass:map";
+@use "sass:list";
+@import "../mixins/palette.scss";
+
+div.theme--light {
 	* ul,
 	li,
 	ol {
@@ -7,7 +11,7 @@ div.root--light {
 }
 
 // DARK THEME
-div.root--dark {
+div.theme--dark {
 	* ul,
 	li,
 	ol {
@@ -20,6 +24,37 @@ div.root--dark {
 		}
 	}
 
+	th {
+		color: #b18834;
+	}
+	td {
+		// color: map.get($color_text, "dark");
+		// color: list.nth($color_text, 2);
+		color: #b5cea8;
+	}
+
+	table {
+		border-width: 2px;
+		border-color: #b18834;
+		border-radius: 1rem;
+
+		> thead {
+			> hr {
+				> th {
+					&:first-child() {
+						padding-left: 1rem;
+						padding-right: 1rem;
+						margin-left: 1rem;
+						margin-right: 1rem;
+						width: 20px;
+					}
+				}
+			}
+		}
+	}
+	thead {
+		background-color: #3e310f;
+	}
 	h3,
 	h4,
 	h5,
@@ -35,6 +70,32 @@ div.root--dark {
 	a {
 		color: #b6480b;
 		text-decoration: none;
+		&:focus {
+			outline: none;
+		}
+
+		&:hover,
+		&:active {
+			color: #e5ce8d;
+		}
+	}
+
+	// Gatsby image wrapper
+	.gatsby-resp-image-wrapper {
+		border-width: 1px;
+		border-color: #3e310f;
+		border-style: solid;
+		padding: 0.75rem;
+		border-radius: 0.25rem;
+	}
+
+	img {
+		margin: auto;
+		border-width: 4px;
+		border-color: #3e310f;
+		border-style: solid;
+		padding: 0.75rem;
+		border-radius: 0.5rem;
 	}
 
 	// Gatsby default highlight
@@ -67,3 +128,5 @@ img {
 	-webkit-user-select: none;
 	-ms-user-select: none;
 }
+
+// @debug map.get($color_text, "dark");

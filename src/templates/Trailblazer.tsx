@@ -35,7 +35,7 @@ interface IGatsbyPageProps {
 }
 export default function PageTemplate(data: IGatsbyPageProps) {
 	const [IsDarkMode, setIsDarkMode] = useState(true);
-	const [LightModeCSS, setLightModeCSS] = useState("root--dark");
+	const [LightModeCSS, setLightModeCSS] = useState("theme--dark");
 	const [MountState, setMountState] = useState(true); //  To run effect only once
 	const [SidebarState, setSidebarState] = useState<IGatsbyLocationProps>({
 		isDarkMode: IsDarkMode,
@@ -50,7 +50,7 @@ export default function PageTemplate(data: IGatsbyPageProps) {
 	// Rendered once...
 	useEffect(() => {
 		if (MountState && data.location.state != null) {
-			setLightModeCSS("root--dark");
+			setLightModeCSS("theme--dark");
 			setIsDarkMode(true);
 
 			// Set states
@@ -58,10 +58,10 @@ export default function PageTemplate(data: IGatsbyPageProps) {
 			setSeriesList(data.location.state.seriesList!);
 		} else {
 			if (IsDarkMode) {
-				setLightModeCSS("root--dark");
+				setLightModeCSS("theme--dark");
 				setIsDarkMode(true);
 			} else {
-				setLightModeCSS("root--light");
+				setLightModeCSS("theme--light");
 				setIsDarkMode(false);
 			}
 		}

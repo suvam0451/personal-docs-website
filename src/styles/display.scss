@@ -1,7 +1,7 @@
 @import "../mixins/library.scss";
 
 // DARK THEME
-div.root--dark {
+div.theme--dark {
 	max-width: 1920px;
 	background-color: #131217;
 
@@ -43,6 +43,24 @@ div.root--dark {
 			//     margin-top: 1rem;
 			//     left: 0%;
 			// }
+		}
+
+		// Gatsby image wrapper
+		* .gatsby-resp-image-wrapper {
+			border-width: 1px;
+			border-color: #3e310f;
+			border-style: solid;
+			padding: 0.75rem;
+			border-radius: 0.25rem;
+		}
+
+		* img {
+			margin: auto;
+			border-width: 4px;
+			border-color: #3e310f;
+			border-style: solid;
+			padding: 0.75rem;
+			border-radius: 0.5rem;
 		}
 
 		> .sidebar_right {

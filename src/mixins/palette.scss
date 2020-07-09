@@ -1,0 +1,31 @@
+@use "sass:list";
+
+$color_text: #000, #cbcbcc;
+
+// @mixin darktheme($pair) {
+// 	$darky: list.nth($pair, 2);
+// 	$light: list.nth($pair, 2);
+// }
+
+// @mixin themed($pair) {
+// 	@each $theme, $map in $pair {
+// 		div.theme--#{$theme} & {
+// 			$theme-map: () !global;
+// 			@each $key, $submap in $map {
+// 				$value: map-get(map-get($themes, $theme), "#{$key}");
+// 				$theme-map: map-merge(
+// 					$theme-map,
+// 					(
+// 						$key: $value,
+// 					)
+// 				) !global;
+// 			}
+// 			@content;
+// 			$theme-map: null !global;
+// 		}
+// 	}
+// }
+
+// @function t($key) {
+// 	@return map-get($theme-map, $key);
+// }
