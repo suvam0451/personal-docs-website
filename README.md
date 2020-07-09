@@ -94,4 +94,14 @@ Looking for more guidance? Full documentation for Gatsby lives [on the website](
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-default)
 
-<!-- AUTO-GENERATED-CONTENT:END -->
+#### Mirrors
+
+| Code              | Repo                                                                                       |
+| ----------------- | ------------------------------------------------------------------------------------------ |
+| az <sup>[1]</sup> | https://suvam0451@dev.azure.com/suvam0451/personal-docs-website/_git/personal-docs-website |
+| gh                | https://suvam0451@github.com/suvam0451/personal-docs-website                               |
+| gl <sup>[2]</sup> | https://suvam0451@gitlab.com/suvam0451/website-ts-main                                     |
+
+- [1] -- fetch URL
+- [2] -- publishing pipelines
+- [3] -- Artifacts

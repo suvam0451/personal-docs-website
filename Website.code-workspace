@@ -8,7 +8,7 @@
 	"settings": {
 		"files.exclude": {
 			"**.lock": true,
-			"README.md": true,
+			"README.md": false,
 			"LICENSE": true,
 			".gitignore": true,
 			"node_modules": true,
