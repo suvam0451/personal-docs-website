@@ -1,0 +1,62 @@
+@import "../mixins/breakpoints.scss";
+
+.example_grid {
+	display: grid;
+	gap: 1rem;
+
+	// grid-template-columns: 1fr; // 1fractional units (100%)
+	// grid-template-columns: repeat(2, 1fr); // 1fractional units (50%)
+
+	// Row calculations on the fly (auto-fit takes all space available)
+	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+
+	> .cardx {
+		> .left {
+		}
+	}
+
+	* .imagex {
+		width: 248px;
+		height: 136px;
+	}
+}
+
+/** Wraps sections. Outer class only exists to provide background-color to section */
+div.container_A {
+	background-color: #fff;
+
+	&.gray {
+		background-color: #f5f5f5;
+	}
+
+	&.green {
+		background-color: #268399;
+	}
+
+	// Limits the max-width for PCs
+	> .content {
+		max-width: 1400px;
+		@apply mx-auto;
+
+		/** Smaller width for ToS and privacy-policy pages */
+		&.legal {
+			max-width: 1200px;
+			@apply mb-12;
+
+			@include apply_for(pc) {
+				@apply px-8;
+			}
+			@include apply_for(tablet) {
+				@apply px-4;
+			}
+			@include apply_for(mobile) {
+				@apply px-4;
+			}
+		}
+	}
+
+	// displays a thin border at bottom
+	&.bottomborder {
+		border-bottom: 1px solid #ebeaeb;
+	}
+}

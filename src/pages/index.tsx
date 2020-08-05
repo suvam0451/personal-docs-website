@@ -201,7 +201,7 @@ function Index(props: IndexPageProps) {
 				<meta property="og:image:alt" content="Faulty URL" />
 			</Helmet>
 
-			<div>
+			<div className="container_root">
 				<div className="shadow-md">
 					<NavSection />
 					<Nav tabs>

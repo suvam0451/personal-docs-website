@@ -1,4 +1,5 @@
 // Functions to set breakpoints
+@use 'lists';
 
 //         @media screen and (max-width: 768px) {
 //             width: 0;
@@ -13,11 +14,6 @@
 //             @apply flex-none;
 //         }
 
-$breakpoints: (
-    "small": 768px,
-    "medium": 1280px,
-);
-
 /**
     USAGE
     @include apply_for(mobile) { ... }
@@ -25,19 +21,34 @@ $breakpoints: (
     @include apply_for(pc) { ... }
 */
 @mixin apply_for($platform) {
-    @if $platform == "mobile" {
-        @media (max-width: 768px) {
-            @content;
-        }
-    } @else if $platform == "tablet" {
-        @media (min-width: 768px) and (max-width: 1280px) {
-            @content;
-        }
-    } @else if $platform == "pc" {
-        @media (min-width: 1280px) {
-            @content;
-        }
-    } @else {
-        @warn "No platform settings found";
-    }
+	@if $platform == "mobile" {
+		@media (max-width: 768px) {
+			@content;
+		}
+	} @else if $platform == "tablet" {
+		@media (min-width: 768px) and (max-width: 1280px) {
+			@content;
+		}
+	} @else if $platform == "pc" {
+		@media (min-width: 1280px) {
+			@content;
+		}
+	} @else {
+		@warn "No platform settings found";
+	}
 }
+
+// @mixin breakpoint-
+// @mixin propstack($property, $stack) {
+//   $first: list.nth($stack, 1);
+
+//   @include apply_for(mobile) {
+//     $property: list.nth($stack, 1);
+//   }
+//   @include apply_for(tablet) {
+//     $property: list.nth($stack, 2);
+//   }
+//   @include apply_for(pc) {
+//     $property: list.nth($stack, 3);
+//   }
+// }

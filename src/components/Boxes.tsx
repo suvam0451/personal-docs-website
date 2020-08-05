@@ -2,7 +2,7 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/css/bootstrap-grid.css";
 import ue4_icon from "../../content/images/ue4-icon.png";
-import Image from "gatsby-image";
+import Img from "gatsby-image";
 
 interface BoxProps {
 	readonly username: string;
@@ -16,43 +16,28 @@ interface TutorialCardProps {
 	readonly software: string;
 	readonly date: string;
 	readonly image: any;
+	link: string;
 }
 
+import "../styles/layouts.scss";
+
 function TutorialCard(props: TutorialCardProps) {
+	const { title, desc, software, date, image, link } = props;
 	return (
 		<div className="border-gray-600 border-2 border-solid rounded-lg my-2">
-			<div className="bg-gray-500 hover:bg-gray-600 flex-1 p-2 rounded-lg overflow-hidden border flex h-40 mx-1 my-1 shadow-md">
-				<div className="flex-1 pl-2 pr-3 pt-2">
-					<h5 className="font-bold mb-3">{props.title}</h5>
-					<div className="bg-teal-600 h-1 rounded-lg mb-1" />
-					<p className="text-sm font-semibold leading-snug">
-						{props.desc}
-					</p>
-					<div className="flex align-bottom mt-6">
-						<img
-							src={ue4_icon}
-							alt=""
-							className="h-6 w-6 mr-2 object-cover"
-						/>
-						<h4 className="text-sm font-light text-teal-600 mt-1">
-							&bull; Tutorial
-						</h4>
-					</div>
+			<div className="bg-gray-500 hover:bg-gray-600 flex flex-col py-2 px-2 rounded-lg overflow-hidden border flex">
+				{/* Must modify pb later. The image is rendered relativeto the div at given absolute position. */}
+				<div className="imagex ">
+					<Img className="shadow-lg" fluid={image} alt="GifGallery" />
 				</div>
-				<div className="flex-initial">
-					{/* Must modify pb later. The image is rendered relativeto the div at given absolute position. */}
-					<div className="relative pb-3/5 w-56">
-						{/* <img
-						className="absolute top=0 h-full w-full object-cover"
-						src="https://steamcdn-a.akamaihd.net/steam/apps/238010/header.jpg?t=1563796563"
-						alt=""
-					/> */}
-						<Image
-							className="shadow-lg"
-							fluid={props.image}
-							alt="GifGallery"
-						/>
-					</div>
+				<div className="flex-grow pt-4">
+					<h5 className="font-bold mb-3">{title}</h5>
+					<p className="text-base">{desc}</p>
+				</div>
+				{/* // Last section */}
+				<div className="flex">
+					<img src={ue4_icon} alt="" className="h-6 w-6 mr-2" />
+					<p className="text-teal-600">&bull; Tutorial</p>
 				</div>
 			</div>
 		</div>
