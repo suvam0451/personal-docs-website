@@ -14,6 +14,7 @@ import {
 	Breadcrumb,
 } from "@blueprintjs/core";
 import { GW2_PriceTag } from "../components/Decorations";
+import GW2ItemTrackerDashboard from "../components/GW2ItemTrackerDashboard";
 
 interface GW2TP {
 	data: {
@@ -87,68 +88,49 @@ export default function SkrittKit(props: any) {
 		// retval.push(ImagePath.length)
 		// );
 
-		axios
-			.get("https://api.guildwars2.com/v2/items?id=" + ID.toString())
-			.then((res) => {
-				//  let onii = JSON.parse(res);
-				// alert(res.data.icon);
-				// setMyString(res["icon"]);
-			});
-		// setMyString(ImagePath);
-
 		priceAPI.readAll().then((response: any) => {
 			setPriceData(response);
-			const updatedPrices = response.map(
-				async (price: GW2TP, i: number) => {
-					const buyprice: number = price.data.buy_at;
-					const ID: number = price.data.id;
+			const updatedPrices = response.map(async (price: GW2TP, i: number) => {
+				const buyprice: number = price.data.buy_at;
+				const ID: number = price.data.id;
 
-					retval.push(
-						<>
-							<tr>
-								<td className="border">{price.data.id} </td>
-								<td>
-									<img
-										className="w-8 h-8 inline"
-										src={price.data.icon}
-									/>
-									{price.data.name}
-								</td>
-								<td>
-									<GW2_PriceTag
-										GoldValue={Math.floor(buyprice / 10000) % 100}
-										SilverValue={Math.floor(buyprice / 100) % 100}
-										CopperValue={Math.floor(buyprice / 100) % 100}
-									/>
-									{Math.floor(buyprice / 10000) % 100}
-									<Img fixed={Gold.childImageSharp.fixed} />
-									{Math.floor(buyprice / 100) % 100}
-									<Img fixed={Silver.childImageSharp.fixed} />
-									{buyprice % 100}
-									<Img fixed={Copper.childImageSharp.fixed} />
-								</td>
-								<td>{Math.floor(buyprice / 100) % 100}</td>
-								<td>{buyprice % 100}</td>
-								<td>30</td>
-							</tr>
-						</>,
-					);
+				retval.push(
+					<>
+						<tr>
+							<td className="border">{price.data.id} </td>
+							<td>
+								<img className="w-8 h-8 inline" src={price.data.icon} />
+								{price.data.name}
+							</td>
+							<td>
+								<GW2_PriceTag
+									GoldValue={Math.floor(buyprice / 10000) % 100}
+									SilverValue={Math.floor(buyprice / 100) % 100}
+									CopperValue={Math.floor(buyprice / 100) % 100}
+								/>
+								{Math.floor(buyprice / 10000) % 100}
+								<Img fixed={Gold.childImageSharp.fixed} />
+								{Math.floor(buyprice / 100) % 100}
+								<Img fixed={Silver.childImageSharp.fixed} />
+								{buyprice % 100}
+								<Img fixed={Copper.childImageSharp.fixed} />
+							</td>
+							<td>{Math.floor(buyprice / 100) % 100}</td>
+							<td>{buyprice % 100}</td>
+							<td>30</td>
+						</tr>
+					</>,
+				);
 
-					// alert("https://api.guildwars2.com/v2/items?id=" + ID.toString());
-					// const MyImagePath : IItems = await GET_REQ("https://api.guildwars2.com/v2/items?id=" + ID.toString()).then(
-					let ImageLink = "";
-					if (ID !== 10) {
-						axios
-							.get(
-								"https://api.guildwars2.com/v2/items?id=" +
-									ID.toString(),
-							)
-							.then((res: Response_Items) => {
-								ImageLink = res.data.icon;
-							});
-					}
-				},
-			);
+				let ImageLink = "";
+				if (ID !== 10) {
+					axios
+						.get("https://api.guildwars2.com/v2/items?id=" + ID.toString())
+						.then((res: Response_Items) => {
+							ImageLink = res.data.icon;
+						});
+				}
+			});
 
 			setTable(retval);
 		});
@@ -157,12 +139,6 @@ export default function SkrittKit(props: any) {
 	return (
 		<>
 			<NavSection />
-			{/* <Card elevation={0} style={{ width: `100%` }}>
-					<Breadcrumbs
-						currentBreadcrumbRenderer={this.renderCurrentBreadcrumb}
-						items={BREADCRUMBS}
-					/>
-				</Card> */}
 			<form>
 				<input onChange={handlePriceSubmit} />
 				<button>Submit</button>
@@ -180,49 +156,29 @@ export default function SkrittKit(props: any) {
 					{myTable}
 				</table>
 			</div>
+			<GW2ItemTrackerDashboard />
 		</>
 	);
-
-	// private renderCurrentBreadcrumb({
-	// 	text,
-	// 	...restProps
-	// }: IBreadcrumbProps) {
-	// 	// customize rendering of last breadcrumb
-	// 	return (
-	// 		<Breadcrumb {...restProps}>
-	// 			{text}
-	// 		</Breadcrumb>
-	// 	);
-	// }
 }
 
 // Gets copper, silver and gold coins
 export const query = graphql`
 	{
-		Copper: file(
-			relativeDirectory: { eq: "images/gw2" }
-			name: { eq: "Copper_coin" }
-		) {
+		Copper: file(relativeDirectory: { eq: "images/gw2" }, name: { eq: "Copper_coin" }) {
 			childImageSharp {
 				fixed(width: 15, height: 15) {
 					...GatsbyImageSharpFixed
 				}
 			}
 		}
-		Silver: file(
-			relativeDirectory: { eq: "images/gw2" }
-			name: { eq: "Silver_coin" }
-		) {
+		Silver: file(relativeDirectory: { eq: "images/gw2" }, name: { eq: "Silver_coin" }) {
 			childImageSharp {
 				fixed(width: 15, height: 15) {
 					...GatsbyImageSharpFixed
 				}
 			}
 		}
-		Gold: file(
-			relativeDirectory: { eq: "images/gw2" }
-			name: { eq: "Gold_coin" }
-		) {
+		Gold: file(relativeDirectory: { eq: "images/gw2" }, name: { eq: "Gold_coin" }) {
 			childImageSharp {
 				fixed(width: 15, height: 15) {
 					...GatsbyImageSharpFixed
