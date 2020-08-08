@@ -9,7 +9,8 @@
 		"start": "gatsby develop",
 		"test": "echo \"Write tests! -> https://gatsby.dev/unit-testing \"",
 		"serve:lambda": "netlify-lambda serve functions",
-		"build:tailwind": "tailwind build src/utils/style.css"
+		"build:tailwind": "tailwind build src/utils/style.css",
+		"deploy": "yarn gatsby build && gh-pages -d public"
 	},
 	"dependencies": {
 		"@babel/core": "^7.10.4",
