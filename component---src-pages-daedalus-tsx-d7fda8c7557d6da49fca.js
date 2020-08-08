@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[12],{"6S7s":function(e,n,t){"use strict";t.r(n);var a=t("q1tI"),r=t.n(a);n.default=function(e){return r.a.createElement(r.a.Fragment,null,"Hello there")}}}]);
+//# sourceMappingURL=component---src-pages-daedalus-tsx-d7fda8c7557d6da49fca.js.map
