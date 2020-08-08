@@ -1,0 +1,32 @@
+p.gw2_pricetag {
+	padding-top: 10px;
+}
+
+.gw2_pricetag_icons {
+	position: relative;
+	top: -3px;
+	margin-left: 4px;
+}
+
+.gw2_inventory_entry {
+	@apply px-4;
+	@apply my-2;
+}
+
+// Centersd elements inline, along the row
+.inline_centered {
+	@apply flex;
+	@apply flex-row;
+	@apply items-center;
+}
+
+.inventory_title_section {
+	width: 360px;
+}
+
+.inventory_price_tag {
+	width: 160px;
+	@apply flex;
+	@apply justify-end;
+	@apply bg-red-100;
+}

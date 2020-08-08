@@ -58,8 +58,8 @@ export default function GW2PriceTracker(props: any) {
 					Clear
 				</button>
 			</form>
-			{state.map((ele) => (
-				<GuildWarsItemCard itemId={ele.id} />
+			{state.map((ele, i) => (
+				<GuildWarsItemCard itemId={ele.id} key={i} />
 			))}
 		</>
 	);
