@@ -3,6 +3,7 @@ import {
 	getGWInventoryArray,
 	setGWInventoryArray,
 } from "../utils/localStorage";
+import { getItemPrice, ItemPrice, getItemDetails, GW2Item } from "../api/gw2_market";
 
 export type InventoryActions =
 	| { type: "add"; id: number }
@@ -23,10 +24,14 @@ export function gwInventoryReducer(
 			let match = _data.find((o) => o.id === id);
 			// Update storage, only if this id does not exist
 			if (!match) {
-				_data.push({
-					id: id,
+				// Fetch item data
+				getItemDetails(id).then((res) => {
+					_data.push({
+						id: id,
+						name: res.name,
+					});
+					setGWInventoryArray(_data);
 				});
-				setGWInventoryArray(_data);
 			}
 			return _data;
 		}
@@ -35,6 +40,7 @@ export function gwInventoryReducer(
 			const { idArray } = action;
 			let extension = idArray.map((ele) => ({
 				id: ele,
+				name: "",
 			}));
 			let newData = _data.concat(extension);
 			setGWInventoryArray(newData);

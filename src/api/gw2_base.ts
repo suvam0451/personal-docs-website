@@ -7,7 +7,7 @@ export default function getGW2APIInstance(method: TMethod = "get"): AxiosInstanc
 	return axios.create({
 		method: method,
 		baseURL: "https://api.guildwars2.com/v2",
-		timeout: 1000,
+		timeout: 10000,
 		headers: {
 			"Content-Type": "application/json",
 		},

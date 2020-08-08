@@ -139,23 +139,6 @@ export default function SkrittKit(props: any) {
 	return (
 		<>
 			<NavSection />
-			<form>
-				<input onChange={handlePriceSubmit} />
-				<button>Submit</button>
-			</form>
-			<div className="mx-2">
-				<table className="table-auto">
-					<tr>
-						<th className="justify-center">id</th>
-						<th className="w-1/4">name</th>
-						<th>sell offer</th>
-						<th>sell price</th>
-						<th>buying price</th>
-						<th>Margin</th>
-					</tr>
-					{myTable}
-				</table>
-			</div>
 			<GW2ItemTrackerDashboard />
 		</>
 	);

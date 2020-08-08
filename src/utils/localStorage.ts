@@ -1,5 +1,6 @@
 export type InventoryState = {
 	id: number;
+	name: string;
 	minimum_alert?: number | undefined;
 	maximum_alert?: number | undefined;
 }[];

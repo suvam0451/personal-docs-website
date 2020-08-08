@@ -16,7 +16,7 @@
 			"public": true,
 			"tsconfig.json": true,
 			"netlify.toml": true,
-			"postcss.config.js": true,
+			"postcss.config.js": false,
 			"tailwind.config.js": true,
 			"tslint.json": false,
 			"lambda": true,
