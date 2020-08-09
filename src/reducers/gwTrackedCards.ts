@@ -1,5 +1,5 @@
 import {
-	InventoryState,
+	InventoryStates,
 	getGWInventoryArray,
 	setGWInventoryArray,
 } from "../utils/localStorage";
@@ -10,14 +10,14 @@ export type InventoryActions =
 	| { type: "clear" }
 	| { type: "append"; idArray: number[] }
 	| { type: "save" }
-	| { type: "init"; newState: InventoryState };
+	| { type: "init"; newState: InventoryStates };
 
 export function gwInventoryReducer(
-	prevState: InventoryState,
+	prevState: InventoryStates,
 	action: InventoryActions,
-): InventoryState {
+): InventoryStates {
 	// Assign to temporary variable for immutability
-	let _data: InventoryState = prevState;
+	let _data: InventoryStates = prevState;
 	switch (action.type) {
 		case "add": {
 			const { id } = action;

@@ -8,9 +8,26 @@ p.gw2_pricetag {
 	margin-left: 4px;
 }
 
-.gw2_inventory_entry {
+div.gw2_inventory_container {
 	@apply px-4;
+}
+
+.gw2_inventory_content {
 	@apply my-2;
+	position: relative;
+	&::before {
+		content: "";
+		position: absolute;
+		left: 2px;
+		height: 100%;
+	}
+
+	&.red::before {
+		border: 2px solid red;
+	}
+}
+
+.gw2_inventory_entry {
 }
 
 // Centersd elements inline, along the row

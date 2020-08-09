@@ -1,0 +1,78 @@
+// Custom stylized forms for my future projects
+// Check attribution for source
+
+$gray: gray;
+$white: black;
+$primary: #11998e;
+$secondary: #38ef7d;
+$form-font-size: 0.75rem;
+
+.form_example {
+	width: 256px !important;
+}
+
+.form__group {
+	position: relative;
+	padding: 15px 0 0;
+	margin-top: 10px;
+	// width: 50%;
+}
+
+.form__field {
+	font-family: inherit;
+	// width: 100%;
+	border: 0;
+	border-bottom: 2px solid $gray; // Primary Color
+	outline: 0;
+	font-size: $form-font-size;
+	color: $white; // Text color
+	padding: 7px 0;
+	background: transparent;
+	transition: border-color 0.2s;
+
+	&::placeholder {
+		color: transparent;
+	}
+
+	&:placeholder-shown {
+		~ .form__label {
+			font-size: $form-font-size;
+			cursor: text;
+			top: 20px;
+		}
+	}
+
+	// Focus state (CAlled when user clicks)
+	&:focus {
+		padding-bottom: 6px;
+		font-weight: 700;
+		border-width: 3px;
+		border-image: linear-gradient(to right, $primary, $secondary);
+		border-image-slice: 1;
+
+		~ .form__label {
+			position: absolute;
+			top: 0;
+			display: block;
+			transition: 0.2s;
+			font-size: $form-font-size;
+			color: $primary;
+			font-weight: 700;
+		}
+	}
+
+	/* reset input, NOTE: Only fired for required tag, in element*/
+	&:required,
+	&:invalid {
+		box-shadow: none;
+	}
+}
+
+.form__label {
+	position: absolute;
+	top: 0;
+	display: block;
+	transition: 0.2s;
+	font-size: 1rem;
+	color: $gray;
+}

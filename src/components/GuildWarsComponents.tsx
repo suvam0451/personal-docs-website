@@ -6,11 +6,11 @@ import BackgroundImage from "gatsby-background-image";
 
 interface IGuildWarsItemCard {
 	itemId: number;
-	key?: number;
+	forwardKey?: number;
 }
 
 /**  */
-export function GuildWarsItemCard({ itemId, key }: IGuildWarsItemCard) {
+export function GuildWarsItemCard({ itemId, forwardKey }: IGuildWarsItemCard) {
 	const [Price, setPrice] = useState<number | null>(null);
 	const [PriceData, setPriceData] = useState<ItemPrice>(dummyItemPriceData);
 	const [ItemData, setItemData] = useState<GW2Item>(dummyItemData);
@@ -37,20 +37,41 @@ export function GuildWarsItemCard({ itemId, key }: IGuildWarsItemCard) {
 		objectFit: "scale-down",
 		backgroundSize: "cover",
 	};
+
+	const SECTION_A_CSS = "inline_centered inventory_title_section";
 	return (
 		<>
-			<div key={key} className="gw2_inventory_entry flex flex-row items-center pl-4">
-				<div className="inline_centered inventory_title_section">
-					<div style={bgImage} className="inline-block"></div>
-					<p className="inline-block ml-4 mb-0">{ItemData.name}</p>
-				</div>
-				<div className="flex-shrink">
-					<PriceTag price={buys.unit_price} />
-					<PriceTag price={sells.unit_price} />
-				</div>
-				<div className="flex-shrink">
-					<PriceTag price={buys.unit_price} />
-					<PriceTag price={sells.unit_price} />
+			<div className="gw2_inventory_container">
+				<div className="gw2_inventory_content red">
+					<div
+						key={forwardKey}
+						className="gw2_inventory_entry flex flex-row items-center pl-4 pt-1"
+					>
+						<div className={SECTION_A_CSS}>
+							<div style={bgImage} className="inline-block"></div>
+							<p className="inline-block ml-4 mb-0">{ItemData.name}</p>
+						</div>
+						<div className="flex-shrink">
+							<PriceTag price={buys.unit_price} />
+							<PriceTag price={sells.unit_price} />
+						</div>
+						<div className="flex-shrink">
+							<PriceTag price={buys.unit_price} />
+							<PriceTag price={sells.unit_price} />
+						</div>
+					</div>
+					<div className="gw2_inventory_entry flex flex-row items-center pl-4 pt-1 pb-1">
+						<div className={SECTION_A_CSS}>
+							<span>Update watchlist</span>
+						</div>
+						<div className="flex-shrink mt-2">
+							<form className="flex-shrink my-0 form__group">
+								<label className="form__label">Purchase threshold</label>
+								<input className="form__field" placeholder="New buy threshold"></input>
+								<input placeholder="New sell threshold"></input>
+							</form>
+						</div>
+					</div>
 				</div>
 			</div>
 		</>

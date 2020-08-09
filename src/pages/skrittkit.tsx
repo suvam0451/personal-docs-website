@@ -1,20 +1,7 @@
 import React, { useState } from "react";
 import { graphql } from "gatsby";
-import axios from "axios";
-import priceAPI from "../utils/priceAPI";
-import Img from "gatsby-image";
-import { NavSection } from "../components/NavBar";
-import {
-	Button,
-	Intent,
-	Breadcrumbs,
-	IBreadcrumbProps,
-	Icon,
-	Card,
-	Breadcrumb,
-} from "@blueprintjs/core";
-import { GW2_PriceTag } from "../components/Decorations";
 import GW2ItemTrackerDashboard from "../components/GW2ItemTrackerDashboard";
+import WebsiteWrapper from "../components/WebsiteWrapper";
 
 interface GW2TP {
 	data: {
@@ -44,12 +31,6 @@ interface Response_Items {
 	};
 }
 
-const BREADCRUMBS: IBreadcrumbProps[] = [
-	{ href: "/", icon: "folder-close", text: "Home" },
-	{ href: "/Softwares", icon: "folder-close", text: "Webapps" },
-	{ icon: "document", text: "SkrittKit" },
-];
-
 export const GET_REQ = (request: RequestInfo): Promise<any> => {
 	return new Promise((resolve, reject) => {
 		let response: Response;
@@ -67,80 +48,27 @@ export const GET_REQ = (request: RequestInfo): Promise<any> => {
 			});
 	});
 };
+
 export default function SkrittKit(props: any) {
-	// State variables
-	// const myTable : JSX.Element = <></>;
-	const [myTable, setTable] = useState(<></>);
-	// const PriceData = null;
-	const [PriceData, setPriceData] = useState(Object);
-	const [MyString, setMyString] = useState("greatest");
-	// Graphql resources
-	const { Copper, Silver, Gold } = props.data;
-
-	function handlePriceSubmit(event: any) {
-		let ID = "24350";
-		const retval: any = [];
-
-		// const ImagePath : IItems = GET_REQ("https://api.guildwars2.com/v2/items?id=" + ID.toString()).then(
-		// alert(ImagePath)
-		// setMyString(ImagePath)
-		// alert (ImagePath)
-		// retval.push(ImagePath.length)
-		// );
-
-		priceAPI.readAll().then((response: any) => {
-			setPriceData(response);
-			const updatedPrices = response.map(async (price: GW2TP, i: number) => {
-				const buyprice: number = price.data.buy_at;
-				const ID: number = price.data.id;
-
-				retval.push(
-					<>
-						<tr>
-							<td className="border">{price.data.id} </td>
-							<td>
-								<img className="w-8 h-8 inline" src={price.data.icon} />
-								{price.data.name}
-							</td>
-							<td>
-								<GW2_PriceTag
-									GoldValue={Math.floor(buyprice / 10000) % 100}
-									SilverValue={Math.floor(buyprice / 100) % 100}
-									CopperValue={Math.floor(buyprice / 100) % 100}
-								/>
-								{Math.floor(buyprice / 10000) % 100}
-								<Img fixed={Gold.childImageSharp.fixed} />
-								{Math.floor(buyprice / 100) % 100}
-								<Img fixed={Silver.childImageSharp.fixed} />
-								{buyprice % 100}
-								<Img fixed={Copper.childImageSharp.fixed} />
-							</td>
-							<td>{Math.floor(buyprice / 100) % 100}</td>
-							<td>{buyprice % 100}</td>
-							<td>30</td>
-						</tr>
-					</>,
-				);
-
-				let ImageLink = "";
-				if (ID !== 10) {
-					axios
-						.get("https://api.guildwars2.com/v2/items?id=" + ID.toString())
-						.then((res: Response_Items) => {
-							ImageLink = res.data.icon;
-						});
-				}
-			});
-
-			setTable(retval);
-		});
-	}
-
 	return (
-		<>
-			<NavSection />
+		<WebsiteWrapper>
 			<GW2ItemTrackerDashboard />
-		</>
+			<div className="form_example">
+				<div className="form__group field px-4">
+					<input
+						type="input"
+						className="form__field text-sm"
+						placeholder="Purchased threshold"
+						name="name"
+						id="name"
+						required
+					></input>
+					<label htmlFor="name" className="form__label text-sm mb-0">
+						Purchase threshold
+					</label>
+				</div>
+			</div>
+		</WebsiteWrapper>
 	);
 }
 
