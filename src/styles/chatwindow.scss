@@ -1,0 +1,32 @@
+// container
+.chat-box {
+	background: red;
+	background-attachment: fixed;
+	padding-left: 20px;
+	overflow-y: scroll;
+	flex: 1;
+}
+
+// left - right messages
+.chat-l {
+	display: flex;
+}
+
+.chat-l .sp {
+	flex: 1;
+}
+
+.chat-r {
+	display: flex;
+}
+.chat-r .sp {
+	flex: 1;
+}
+
+.mess-r {
+	background: #e2ffc7;
+}
+
+.timestamp {
+	background: red;
+}

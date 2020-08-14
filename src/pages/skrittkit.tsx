@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { graphql } from "gatsby";
 import GW2ItemTrackerDashboard from "../components/GW2ItemTrackerDashboard";
 import WebsiteWrapper from "../components/WebsiteWrapper";
+import ChatWindow from "../components/ChatSection";
 
 interface GW2TP {
 	data: {
@@ -67,6 +68,9 @@ export default function SkrittKit(props: any) {
 						Purchase threshold
 					</label>
 				</div>
+			</div>
+			<div className="fstab">
+				<ChatWindow />
 			</div>
 		</WebsiteWrapper>
 	);
