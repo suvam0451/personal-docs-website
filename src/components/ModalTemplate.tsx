@@ -28,7 +28,8 @@ const OVERLAY_STYLE: CSSProperties = {
 	zIndex: 1000,
 };
 
-/** createPortal wrapper for modal elements.
+/**
+ * 	createPortal wrapper for modal elements.
  *  Renders the modal at the given element
  *  @param elementID the ID of div to render the modal at
  */

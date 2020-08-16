@@ -1,3 +1,20 @@
+$chat-font-normal: 0.75rem;
+$chat-font-sm: 0.7rem;
+$percentage-width: 75%;
+$chatrow-separation: 0.25rem;
+$gray-color: rgba(128, 128, 128, 0.25);
+$chat-primary-color: #0048aa;
+$chat-primary-text-color: #eee;
+$message-padding: 0.4rem 1rem;
+
+.chatbox-example {
+	margin-top: 1rem;
+	max-width: 360px;
+	margin-left: 2rem;
+	font-size: $chat-font-normal;
+	@apply mx-auto;
+}
+
 // container
 .chat-box {
 	background: red;
@@ -7,26 +24,228 @@
 	flex: 1;
 }
 
-// left - right messages
-.chat-l {
-	display: flex;
+.chat-scrollarea {
+	height: 360px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	scrollbar-width: thin;
+	padding-right: 2px;
+
+	&::-webkit-scrollbar {
+		width: 3px;
+	}
+	/* Track */
+	&::-webkit-scrollbar-track {
+		background: #f1f1f1;
+	}
+
+	/* Handle */
+	&::-webkit-scrollbar-thumb {
+		background: #888;
+	}
+
+	/* Handle on hover */
+	&::-webkit-scrollbar-thumb:hover {
+		background: #555;
+	}
 }
 
-.chat-l .sp {
-	flex: 1;
+// line with message
+.message-row {
+	margin-bottom: $chatrow-separation;
+	display: flex;
+	flex-direction: column;
 }
 
-.chat-r {
-	display: flex;
-}
-.chat-r .sp {
+.message-text {
+	padding: $message-padding;
 	flex: 1;
+	display: inline-block;
+}
+
+// sent by us
+.you-message .message-text {
+	background: $chat-primary-color;
+	color: $chat-primary-text-color;
+	border: 1px solid #0048aa;
+	border-radius: 14px 14px 0 14px;
+	font-size: inherit;
+	max-width: $percentage-width;
+	margin-left: auto;
+}
+
+.you-message {
+	> .message-text {
+		margin-left: auto;
+	}
+	> .message-time {
+		margin-left: auto;
+	}
+}
+
+.other-message {
+	> .message-text {
+		margin-right: auto;
+	}
+}
+
+.other-message .message-text {
+	background: #eee;
+	color: #111111;
+	border: 1px solid #ddd;
+	border-radius: 14px 14px 14px 0;
+	font-size: inherit;
+	max-width: $percentage-width;
 }
 
 .mess-r {
 	background: #e2ffc7;
 }
 
-.timestamp {
-	background: red;
+.message-time {
+	color: #777;
+	font-size: $chat-font-sm;
+}
+
+#chat-form {
+	display: grid;
+	grid: 51px / 32px 1fr;
+	grid-template-columns: 32px auto 64px;
+	align-content: center;
+	align-items: center;
+	grid-gap: 15px;
+	grid-area: chat-form;
+	border-radius: 0 0 10px 0;
+	border-top: 1px solid rgba(0, 0, 0, 0.25);
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.chatbox-recipient {
+}
+
+#chat-form input {
+	outline: none;
+	padding: 0.5rem 0.75rem;
+	border: 2px solid #ddd;
+	color: #330;
+	border-radius: 6px;
+	font-size: $chat-font-normal;
+}
+
+#chat-form button {
+	background-color: $chat-primary-color;
+	color: $chat-primary-text-color;
+	border-radius: 0.5rem;
+	padding: 0.25rem 0.5rem;
+}
+
+.icon-link {
+	&.attach {
+		&:before {
+			display: inline-block;
+			float: left;
+			width: 20px;
+			height: 42px;
+			content: "";
+			background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/382994/attachment.png");
+			background-repeat: no-repeat;
+			background-position: center;
+		}
+	}
+	&.smiley {
+		&:before {
+			display: inline-block;
+			float: left;
+			width: 20px;
+			height: 42px;
+			content: "";
+			background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/382994/smiley.png");
+			background-repeat: no-repeat;
+			background-position: center;
+		}
+	}
+	&.send {
+		&:before {
+			display: inline-block;
+			float: left;
+			width: 20px;
+			height: 42px;
+			margin-left: 11px;
+			content: "";
+			background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/382994/send.png");
+			background-repeat: no-repeat;
+			background-position: center;
+		}
+	}
+}
+
+.conversation-start {
+	position: relative;
+	width: 100%;
+	margin-bottom: $chatrow-separation;
+	text-align: center;
+	span {
+		font-size: $chat-font-sm;
+		display: inline-block;
+		&:before,
+		&:after {
+			position: absolute;
+			top: 10px;
+			display: inline-block;
+			width: 30%;
+			height: 2px;
+			content: "";
+			background-color: $gray-color;
+		}
+		&:before {
+			left: 0;
+		}
+		&:after {
+			right: 0;
+		}
+	}
+}
+
+// --------------- ANIMATIONS ------------------------
+
+@keyframes slideFromLeft {
+	0% {
+		margin-left: -200px;
+		opacity: 0;
+	}
+	100% {
+		margin-left: 0;
+		opacity: 1;
+	}
+}
+@-webkit-keyframes slideFromLeft {
+	0% {
+		margin-left: -200px;
+		opacity: 0;
+	}
+	100% {
+		margin-left: 0;
+		opacity: 1;
+	}
+}
+@keyframes slideFromRight {
+	0% {
+		margin-right: -200px;
+		opacity: 0;
+	}
+	100% {
+		margin-right: 0;
+		opacity: 1;
+	}
+}
+@-webkit-keyframes slideFromRight {
+	0% {
+		margin-right: -200px;
+		opacity: 0;
+	}
+	100% {
+		margin-right: 0;
+		opacity: 1;
+	}
 }

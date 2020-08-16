@@ -23,13 +23,11 @@ export default function NotifyMeButton({
 
 	function handleSubmitEvent() {
 		let value = EntryRef.current!.value;
-		console.log("Hello there", value);
 		if (validation?.test(value)) {
 			setIsExpanded(false);
 			onSuccess(value);
 		}
 		setIsExpanded(false);
-		console.log("Function failed successfully");
 	}
 
 	function ElementToggled(e: React.ChangeEvent<HTMLInputElement>) {

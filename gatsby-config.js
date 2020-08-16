@@ -120,5 +120,12 @@ module.exports = {
 				postCssPlugins: [require("tailwindcss"), require("./tailwind.config.js")],
 			},
 		},
+		{
+			resolve: `gatsby-plugin-portal`,
+			options: {
+				key: "sticky-portal",
+				id: "sticky-portal",
+			},
+		},
 	],
 };
