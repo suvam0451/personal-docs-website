@@ -80,15 +80,18 @@ export default function GW2PriceTracker(props: any) {
 					Clear
 				</button>
 			</form>
-			{state.map((ele, i) => (
-				<GuildWarsItemCard itemId={ele.id} forwardKey={i} />
-			))}
 			<NotifyMeButton
 				label="GW2 API token"
 				button_title="Update"
 				onSuccess={handleSuccessfulKeyUpdate}
 				validation={GW2_REGEX}
+				label_failure="Invalid API token"
+				label_success="API token is valid 😄"
+				className="mb-8"
 			/>
+			{state.map((ele, i) => (
+				<GuildWarsItemCard itemId={ele.id} forwardKey={i} />
+			))}
 		</>
 	);
 }

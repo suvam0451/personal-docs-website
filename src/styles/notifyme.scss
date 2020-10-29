@@ -6,6 +6,7 @@
 $black: #000000;
 $cornflower-lilac: #ffaea9;
 $salmon: #ff7b73;
+$label-success: #567a2f;
 $white: #ffffff;
 $your-pink: #ffcccc;
 
@@ -114,7 +115,6 @@ $button-padding: 0.4rem 0.5rem;
 }
 
 .c-form__toggle {
-	color: $salmon;
 	top: 0;
 	cursor: pointer;
 	z-index: 1;
@@ -127,6 +127,13 @@ $button-padding: 0.4rem 0.5rem;
 	&::before {
 		font-size: $font-size;
 		content: attr(data-title);
+	}
+
+	&.valid {
+		color: $label-success;
+	}
+	&.invalid {
+		color: $salmon;
 	}
 }
 
